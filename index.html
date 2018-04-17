@@ -1,0 +1,103 @@
+
+<div id="index" class="screen index move-show">
+    <div style="margin:40vh auto;text-align:center;">
+        <h1 style="font-size:2.3rem">纸小墨官方博客</h1>
+        <span style="color:#696969;font-size:0.9rem">构建只为纯粹书写的博客</font>
+        <h3></h3>
+        <br>
+        <a href="#" class="btn" onclick="Move('#archive','#index','right')">Explore Me</a>
+    </div>
+    
+</div>
+<div id="archive" class="screen archive move-show">
+    <div class="archive-container">
+	<div class="author-info">
+ 
+            <img class="avatar" src="/Candy-Rebirth-PaperInk/images/avatar.png" width="100" height="100">
+
+            <div class="name">纸小墨官方博客</div>
+            <div class="desc">构建只为纯粹书写的博客</div>
+            <div class="stat">
+                
+                <div class="article-count"></div>
+                <div class="category-count"></div>
+                <div class="comment-count"></div>
+            </div>
+            <div class="social">
+                
+            </div>
+            <div class="copyright">
+                © 纸小墨官方博客 2014-2018
+                <div class="theme-info">
+                    Theme <a href="https://github.com/Archeb/Candy-Rebirth">Candy-Rebirth</a> By <a href="https://qwq.moe/">Archeb</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="article-list">
+		&lt;?php
+ 
+if (!defined('__TYPECHO_ROOT_DIR__'))
+	exit;
+	?>
+
+        &lt;?php function listArticles($art){ ?>
+            &lt;?php while($art->next()): ?>
+            &lt;?php if ($art->fields->previewImage && $art->fields->previewImage!==""): ?>
+            <div class="article-with-preview">
+                <div class="cover" onclick="showArticle('<?php $art->permalink() ?>')">
+                    <div class="cover-image" style="background-image:url(<?php $art->fields->previewImage(); ?>)"><div class="title">&lt;?php $art->title(); ?></div></div>
+                </div>
+                <div class="content" onclick="showArticle('<?php $art->permalink() ?>')">
+                    <div class="text">
+                        &lt;?php $art->excerpt(50, '') ?>
+                    </div>
+                </div>
+                <div class="meta">
+                    <div class="group">
+                        &lt;?php array_map(function($v){echo '<a class="category" onclick="showArchive(\''.$v['permalink'].'\')" style="'.$v['description'].'">'.$v['name'].'</a>';},$art->categories) ?>
+                    </div>
+                    <div class="group date">&lt;?php echo time_elapsed_string('@'.$art->created) ?>前 · &lt;?php $art->author(); ?></div>
+                </div>
+            </div>
+            &lt;?php else: ?>
+            <div class="article">
+                <div class="title"><a onclick="showArticle('<?php $art->permalink() ?>')">&lt;?php $art->title(); ?></a>
+                    <div class="meta">&lt;?php array_map(function($v){echo '<a class="category" onclick="showArchive(\''.$v['permalink'].'\')" style="'.$v['description'].'">'.$v['name'].'</a>';},$art->categories) ?> &lt;?php $art->author(); ?> · &lt;?php echo time_elapsed_string('@'.$art->created) ?>前</div>
+                </div>
+                
+                <div class="content" onclick="showArticle('<?php $art->permalink() ?>')">
+                    &lt;?php $art->content(); ?>
+                </div>
+            </div>
+            &lt;?php endif; endwhile;?>
+            
+        &lt;?php } ?>
+ 
+        </div>
+    </div>
+    <div class="category-container">
+        
+    </div>
+</div>
+<div id="page" class="screen page">
+    <div class="page-container">
+        
+    </div>
+</div>
+<div id="archive" class="screen page">
+</div>
+<script>
+
+
+</script>
+<footer class="footer">
+    <span class="copyright">
+        纸小墨官方博客 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>

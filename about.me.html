@@ -1,0 +1,158 @@
+            
+<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>纸小墨官方博客</title>
+    <link rel="stylesheet/less" href="/Candy-Rebirth-PaperInkcss/w.less?v2">
+    <script src="/Candy-Rebirth-PaperInkjs/plugins.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/Candy-Rebirth-PaperInkjs/m.js?v5" type="text/javascript" charset="utf-8"></script>
+	<script src="/Candy-Rebirth-PaperInkjs/less.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+	<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/vs2015.min.css" rel="stylesheet">
+	<link href="/Candy-Rebirth-PaperInkcss/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div class="bg" style="background-image:url('https://i.loli.net/2018/04/15/5ad2ca39da9bb.jpg');"></div>
+    <div class="menu">
+        <div class="group">
+            <a class="item mdi mdi-arrow-left" id="back" onclick="back()"></a>
+            <div class="drop-down">
+                <span class="item mdi mdi-format-annotation-plus" onclick="biggerFont()"></span>
+                <span class="item mdi mdi-share-variant"></span>
+            </div>
+        </div>
+        <div class="group">
+            <div class="hidden">
+               
+                       
+                        
+                
+            </div>
+            <a onclick="ShowNav()" class="item mdi mdi-menu"></a>
+        </div>
+    </div>
+			<div id="index" class="screen index">
+    <div style="margin:40vh auto;text-align:center;">
+        <h1 style="font-size:2.3rem">贫困的蚊子</h1>
+        <span style="color:#696969;font-size:0.9rem">亦余心之所向兮，虽九死其尤未悔</font>
+        <h3></h3>
+        <br>
+        <a href="#" class="btn" onclick="Move('#archive','#index','right')">Explore Me</a>
+    </div>
+    
+</div>
+<div id="archive" class="screen archive">
+    <div class="archive-container">
+             <div class="author-info">
+ 
+            <img class="avatar" src="/Candy-Rebirth-PaperInk/images/avatar.png" width="100" height="100">
+
+            <div class="name">纸小墨官方博客</div>
+            <div class="desc">构建只为纯粹书写的博客</div>
+            <div class="stat">
+                
+                <div class="article-count"></div>
+                <div class="category-count"></div>
+                <div class="comment-count"></div>
+            </div>
+            <div class="social">
+                
+            </div>
+            <div class="copyright">
+                © 纸小墨官方博客 2014-2018
+                <div class="theme-info">
+                    Theme <a href="https://github.com/Archeb/Candy-Rebirth">Candy-Rebirth</a> By <a href="https://qwq.moe/">Archeb</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-list">
+                        &lt;?php
+ 
+if (!defined('__TYPECHO_ROOT_DIR__'))
+	exit;
+	?>
+
+        &lt;?php function listArticles($art){ ?>
+            &lt;?php while($art->next()): ?>
+            &lt;?php if ($art->fields->previewImage && $art->fields->previewImage!==""): ?>
+            <div class="article-with-preview">
+                <div class="cover" onclick="showArticle('<?php $art->permalink() ?>')">
+                    <div class="cover-image" style="background-image:url(<?php $art->fields->previewImage(); ?>)"><div class="title">&lt;?php $art->title(); ?></div></div>
+                </div>
+                <div class="content" onclick="showArticle('<?php $art->permalink() ?>')">
+                    <div class="text">
+                        &lt;?php $art->excerpt(50, '') ?>
+                    </div>
+                </div>
+                <div class="meta">
+                    <div class="group">
+                        &lt;?php array_map(function($v){echo '<a class="category" onclick="showArchive(\''.$v['permalink'].'\')" style="'.$v['description'].'">'.$v['name'].'</a>';},$art->categories) ?>
+                    </div>
+                    <div class="group date">&lt;?php echo time_elapsed_string('@'.$art->created) ?>前 · &lt;?php $art->author(); ?></div>
+                </div>
+            </div>
+            &lt;?php else: ?>
+            <div class="article">
+                <div class="title"><a onclick="showArticle('<?php $art->permalink() ?>')">&lt;?php $art->title(); ?></a>
+                    <div class="meta">&lt;?php array_map(function($v){echo '<a class="category" onclick="showArchive(\''.$v['permalink'].'\')" style="'.$v['description'].'">'.$v['name'].'</a>';},$art->categories) ?> &lt;?php $art->author(); ?> · &lt;?php echo time_elapsed_string('@'.$art->created) ?>前</div>
+                </div>
+                
+                <div class="content" onclick="showArticle('<?php $art->permalink() ?>')">
+                    &lt;?php $art->content(); ?>
+                </div>
+            </div>
+            &lt;?php endif; endwhile;?>
+            
+        &lt;?php } ?>
+        </div>
+    </div>
+    <div class="category-container">
+        
+    </div>
+</div>
+<div id="page" class="screen page move-show" style="overflow-y: scroll;">
+    <div class="page-container">
+
+<div class="page-wrapper">
+    
+    <div class="title">关于作者
+    <div class="meta">
+    </div>
+    
+    <div class="content">
+       <h2>纸小墨</h2>
+
+<p>构建只为纯粹书写的博客。</p>
+
+<p><a href="http://www.chole.io/">http://www.chole.io/</a></p>
+
+    </div>
+   
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//username.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+</div>
+
+    </div>
+</div>
+<script>
+document.querySelector('#back').style.transform="rotate(90deg)";
+document.querySelector(".drop-down").style.transform="translate(0)";
+        document.querySelector(".drop-down").style.opacity="1";
+        var codeBlocks=document.querySelectorAll('pre code').forEach((e)=>{
+                　　hljs.highlightBlock(e);
+                });
+
+</script>
