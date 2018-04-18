@@ -71,44 +71,7 @@
         </div>
 
         <div class="article-list">
-                        &lt;?php
- 
-if (!defined('__TYPECHO_ROOT_DIR__'))
-	exit;
-	?>
-
-        &lt;?php function listArticles($art){ ?>
-            &lt;?php while($art->next()): ?>
-            &lt;?php if ($art->fields->previewImage && $art->fields->previewImage!==""): ?>
-            <div class="article-with-preview">
-                <div class="cover" onclick="showArticle('<?php $art->permalink() ?>')">
-                    <div class="cover-image" style="background-image:url(<?php $art->fields->previewImage(); ?>)"><div class="title">&lt;?php $art->title(); ?></div></div>
-                </div>
-                <div class="content" onclick="showArticle('<?php $art->permalink() ?>')">
-                    <div class="text">
-                        &lt;?php $art->excerpt(50, '') ?>
-                    </div>
-                </div>
-                <div class="meta">
-                    <div class="group">
-                        &lt;?php array_map(function($v){echo '<a class="category" onclick="showArchive(\''.$v['permalink'].'\')" style="'.$v['description'].'">'.$v['name'].'</a>';},$art->categories) ?>
-                    </div>
-                    <div class="group date">&lt;?php echo time_elapsed_string('@'.$art->created) ?>前 · &lt;?php $art->author(); ?></div>
-                </div>
-            </div>
-            &lt;?php else: ?>
-            <div class="article">
-                <div class="title"><a onclick="showArticle('<?php $art->permalink() ?>')">&lt;?php $art->title(); ?></a>
-                    <div class="meta">&lt;?php array_map(function($v){echo '<a class="category" onclick="showArchive(\''.$v['permalink'].'\')" style="'.$v['description'].'">'.$v['name'].'</a>';},$art->categories) ?> &lt;?php $art->author(); ?> · &lt;?php echo time_elapsed_string('@'.$art->created) ?>前</div>
-                </div>
-                
-                <div class="content" onclick="showArticle('<?php $art->permalink() ?>')">
-                    &lt;?php $art->content(); ?>
-                </div>
-            </div>
-            &lt;?php endif; endwhile;?>
-            
-        &lt;?php } ?>
+                        
         </div>
     </div>
     <div class="category-container">
